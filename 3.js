@@ -446,3 +446,13 @@ certCards.forEach(card => {
 
 
 console.log('🎓 Certification section loaded successfully!');
+// script.js ma aa code add karo
+async function getData() {
+  const res = await fetch('/api/hello'); // Vercel automatically 'api/' folder ne endpoint banave che
+  const data = await res.json();
+  console.log(data.message); // Console ma check karo
+  alert("Backend message: " + data.message);
+}
+
+// Jyare button click thai tyare call karo
+// getData();
