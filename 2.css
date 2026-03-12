@@ -603,6 +603,22 @@ h2 {
   transform: translateY(0);
 }
 
+.overlay-content h3 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.overlay-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
 
 
 

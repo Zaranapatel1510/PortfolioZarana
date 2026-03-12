@@ -160,8 +160,8 @@ async function loadProjects() {
         const projectContainer = document.querySelector('.project-grid-modern');
 
         if (projects && projects.length > 0) {
-            // સ્ટેટિક પ્રોજેક્ટ્સ કાઢવા હોય તો નીચેની લાઇન અનકમેન્ટ કરો:
-            // projectContainer.innerHTML = ''; 
+            // સ્ટેટિક પ્રોજેક્ટ્સ કાઢવા માટે:
+            projectContainer.innerHTML = ''; 
 
             projects.forEach(proj => {
                 const projectHTML = `
