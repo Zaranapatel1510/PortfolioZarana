@@ -147,8 +147,7 @@ body {
   padding: 80px 10%;
   background: linear-gradient(to right, #ffffff, #eaf4f4);
   gap: 40px;
-  flex-wrap: nowrap;
-  /* Desktop પર લાઇન ચેન્જ નહીં થાય */
+  flex-wrap: wrap; /* Changed from nowrap to wrap for responsiveness */
 }
 
 .hero-content h4 {
@@ -246,7 +245,6 @@ body {
   /* width: 100%;
   height: 100%; */
   overflow: hidden;
-  margin-right: -50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -276,7 +274,8 @@ body {
 }
 
 .person-img {
-  width: 180px;
+  width: 250px; /* Increased slightly for desktop */
+  max-width: 100%;
   z-index: 2;
   position: relative;
 }
@@ -2083,174 +2082,164 @@ body {
 }
 
 /* ========== Responsive Design ========== */
+/* ========== Comprehensive Responsive Design ========== */
+
+/* Tablet & Large Mobile (Under 992px) */
 @media (max-width: 992px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .nav-links li a {
+    font-size: 14px;
   }
 
-  .footer-column {
-    width: 100%;
+  .hero-section {
+    padding: 100px 5% 50px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .profile-card {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .blob-shape {
+    width: 300px;
+    height: 300px;
+  }
+
+  .person-img {
+    width: 140px;
+  }
+
+  .image-wrapper {
+    margin-right: 0;
+  }
+
+  .about-container {
+    flex-direction: column;
+  }
+
+  .certification-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  .timeline-card {
+    width: 100% !important;
+    padding-left: 20px !important;
+    text-align: left !important;
     margin-bottom: 30px;
   }
 
-  .newsletter-box {
+  .timeline-dot {
+    display: none; /* Hide dots on mobile for cleaner look */
+  }
+  
+  /* Image responsiveness fix */
+  .modern-card img, .cert-card img, .company-logo-img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+  }
+}
+
+/* Small Mobile (Under 600px) */
+@media (max-width: 600px) {
+  .header {
+    padding: 10px 20px;
+  }
+
+  .navbar {
     flex-direction: column;
+    gap: 15px;
   }
 
-  .newsletter-box input {
-    border-radius: 20px;
-    width: 100%;
-    margin-bottom: 10px;
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
 
-  .newsletter-box button {
-    border-radius: 20px;
-    width: 100%;
+  .hero-content h1 {
+    font-size: 28px;
   }
 
-  .footer-links {
+  .hero-buttons {
+    display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    gap: 10px;
+    align-items: center;
   }
 
-  .footer-links a {
-    margin: 5px 0;
-    display: block;
+  .hero-btn {
+    width: 80%;
+    padding: 12px;
+  }
+
+  .blob-shape {
+    width: 250px;
+    height: 250px;
+  }
+
+  .person-img {
+    width: 120px;
+  }
+
+  .project-grid-modern {
+    padding: 20px 10px;
+    gap: 15px;
+  }
+
+  .modern-card {
+    flex: 0 0 280px;
+    height: 400px;
+  }
+
+  .contact-box {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .contact-left, .contact-right {
+    width: 100%;
+    padding: 0;
+  }
+
+  .tech-track {
+    gap: 15px;
+  }
+
+  .tech-item {
+    min-width: 70px;
+    padding: 8px;
+  }
+
+  .tech-item img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .social-bar {
+    display: none; /* Mobile par side social bar kadhi nakhavo better che */
+  }
+  
+  .main-footer {
+      padding: 40px 5%;
   }
 }
 
-/*hover mouse*/
-.cursor-follower {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #57d6d8;
-  border-radius: 50%;
-  background-color: #1A4D4E;
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.05s ease;
-}
-
-/*certification btn*/
-
-.certificate-btn {
-  margin-top: 15px;
-}
-
-.view-certificate {
-  display: inline-block;
-  padding: 10px 10px;
-  background-color: #1A4D4E;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.view-certificate:hover {
-  background-color: #4f7677;
-}
-
-/*vertical*/
-.social-bar {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  padding: 5px;
-  z-index: 999;
-}
-
-.social-bar a {
-  color: #1a4d4e;
-  /* your theme color */
-  font-size: 18px;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 50%;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.social-bar a:hover {
-  background-color: #00796b;
-  color: #fff;
-}
-
-.vertical-line {
-  width: 1px;
-  height: 70px;
-  background-color: #ccc;
-  margin: 5px 0;
-}
-
-.dot {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  font-size: 11px;
-  color: #444;
-  letter-spacing: 2px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-/*scroll*/
-.scroll-indicator-below {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  margin-left: 22 0px;
-  margin-top: -300px;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.scroll-indicator-below .scroll-arrow-img {
-  width: 40px;
+/* Ensure all images are responsive by default */
+img {
+  max-width: 100%;
   height: auto;
-  filter: brightness(0) saturate(100%) invert(13%) sepia(10%) saturate(1360%) hue-rotate(129deg) brightness(92%) contrast(97%);
-  animation: bounceScroll 2s infinite;
-}
-
-.scroll-indicator-below span {
-  margin-top: 6px;
-  font-size: 14px;
-  color: #1A4D4E;
-  letter-spacing: 1.5px;
-  font-weight: 500;
-}
-
-@keyframes bounceScroll {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(6px);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+}
