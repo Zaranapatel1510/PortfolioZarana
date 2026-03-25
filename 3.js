@@ -1,4 +1,4 @@
-// // ૧. ડેટા લિસ્ટ
+// // 1. Data List
 // const infoList = [
 //     { title: "Cross-Domain Engineer", desc: "Engineering is about solving problems." },
 //     { title: "Creative Technologist", desc: "Blending creativity and technology." },
@@ -7,7 +7,7 @@
 
 // let infoIndex = 0;
 
-// // ૨. ઇન્ફો ચેન્જ ફંક્શન
+// // 2. Info Change Function
 // function changeInfo() {
 //     const subtitle = document.getElementById("subtitle");
 //     const description = document.getElementById("description");
@@ -19,12 +19,12 @@
 // }
 // setInterval(changeInfo, 3000);
 
-// // ૩. કોન્ટેક્ટ ફોર્મ (આ ભાગ ધ્યાનથી જોજો)
+// // 3. Contact Form (Watch this part carefully)
 // function setupContactForm() {
 //     const contactForm = document.getElementById('contact-form');
 //     if (contactForm) {
 //         contactForm.addEventListener('submit', async (e) => {
-//             e.preventDefault(); // રિલોડ રોકવા માટે
+//             e.preventDefault(); // To prevent reload
 
 //             const formData = {
 //                 name: document.getElementById('name').value,
@@ -42,12 +42,12 @@
 
 //                 const result = await response.json();
 //                 if (result.success) {
-//                     alert("🚀 MongoDB માં ડેટા સેવ થઈ ગયો!");
+//                     alert("🚀 Data saved in MongoDB!");
 //                     contactForm.reset();
 //                 }
 //             } catch (error) {
 //                 console.error("Error:", error);
-//                 alert("❌ સર્વર કનેક્શનમાં ભૂલ છે. શું Node.js ચાલુ છે?");
+//                 alert("❌ Server connection error. Is Node.js running?");
 //             }
 //         });
 //     }
@@ -63,7 +63,7 @@
 //         const projects = await response.json();
 
 //         const projectContainer = document.querySelector('.project-grid-modern');
-//         // જો તમે ઈચ્છો તો અહીં જૂના સ્ટેટિક પ્રોજેક્ટ્સ ક્લિયર કરી શકો:
+//         // If you want, you can clear old static projects here:
 //         // projectContainer.innerHTML = ''; 
 
 //         projects.forEach(proj => {
@@ -81,11 +81,11 @@
 //             projectContainer.innerHTML += projectHTML;
 //         });
 //     } catch (err) {
-//         console.error("પ્રોજેક્ટ્સ લોડ કરવામાં એરર:", err);
+//         console.error("Error loading projects:", err);
 //     }
 // }
 
-// // પેજ લોડ થાય ત્યારે પ્રોજેક્ટ્સ બતાવો
+// // Show projects when page loads
 // window.onload = loadProjects; 
 
 
@@ -95,7 +95,7 @@
 //         const projects = await response.json();
 
 //         const projectContainer = document.querySelector('.project-grid-modern');
-//         // જો તમે ઈચ્છો તો અહીં જૂના સ્ટેટિક પ્રોજેક્ટ્સ ક્લિયર કરી શકો:
+//         // If you want, you can clear old static projects here:
 //         // projectContainer.innerHTML = ''; 
 
 //         projects.forEach(proj => {
@@ -113,16 +113,16 @@
 //             projectContainer.innerHTML += projectHTML;
 //         });
 //     } catch (err) {
-//         console.error("પ્રોજેક્ટ્સ લોડ કરવામાં એરર:", err);
+//         console.error("Error loading projects:", err);
 //     }
 // }
 
-// // પેજ લોડ થાય ત્યારે પ્રોજેક્ટ્સ બતાવો
+// // Show projects when page loads
 // window.onload = loadProjects; 
 
 
 
-// // Contact Form સબમિટ કરવા માટે
+// // To submit Contact Form
 // const response = await fetch('http://localhost:5000/api/connect', {
 //     method: 'POST',
 //     headers: { 'Content-Type': 'application/json' },
@@ -131,7 +131,7 @@
 
 
 
-// --- ૧. હીરો સેક્શનમાં ટેક્સ્ટ ચેન્જ કરવા માટે ---
+// --- 1. To change text in Hero Section ---
 const infoList = [
     { title: "Cross-Domain Engineer", desc: "Engineering is about solving problems." },
     { title: "Creative Technologist", desc: "Blending creativity and technology." },
@@ -151,7 +151,7 @@ function changeInfo() {
 }
 setInterval(changeInfo, 3000);
 
-// --- ૨. MongoDB માં પ્રોજેક્ટ્સ લોડ કરવા માટે ---
+// --- 2. To load projects from MongoDB ---
 async function loadProjects() {
     try {
         const response = await fetch('/api/projects');
@@ -160,7 +160,7 @@ async function loadProjects() {
         const projectContainer = document.querySelector('.project-grid-modern');
 
         if (projects && projects.length > 0) {
-            // સ્ટેટિક પ્રોજેક્ટ્સ કાઢવા માટે:
+            // To remove static projects:
             projectContainer.innerHTML = ''; 
 
             projects.forEach(proj => {
@@ -179,13 +179,13 @@ async function loadProjects() {
             });
         }
     } catch (err) {
-        console.error("❌ પ્રોજેક્ટ્સ લોડ કરવામાં એરર:", err);
+        console.error("❌ Error loading projects:", err);
     }
 }
 
-// --- ૩. કોન્ટેક્ટ ફોર્મ સબમિટ કરવા માટે ---
+// --- 3. To submit the contact form ---
 function setupContactForm() {
-    const contactForm = document.getElementById('contact-form'); // ખાતરી કરો કે HTML માં id="contact-form" છે
+    const contactForm = document.getElementById('contact-form'); // Ensure HTML has id="contact-form"
 
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -197,16 +197,17 @@ function setupContactForm() {
             submitBtn.disabled = true;
             submitBtn.textContent = "SENDING...";
 
-            // ફોર્મ ડેટા ભેગો કરવો
+            // Collect form data
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 subject: document.getElementById('subject').value,
-                message: document.querySelector('textarea').value // ટેક્સ્ટ એરિયા માટે
+                message: document.querySelector('textarea').value // For textarea
             };
 
             try {
-                const response = await fetch('/api/connect', {
+                // For 'Always On' functionality, deploy to Vercel/Render.
+                const response = await fetch('/api/connect', { 
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
@@ -215,32 +216,33 @@ function setupContactForm() {
                 const result = await response.json();
 
                 if (result.success) {
-                    // Show custom success message
+                    // Custom success message
                     successMsg.style.display = 'block';
                     contactForm.reset();
 
-                    // Hide after 5 seconds
+                    // Hide message after 5 seconds
                     setTimeout(() => {
                         successMsg.style.display = 'none';
                     }, 5000);
                 } else {
-                    alert("❌ ભૂલ: " + result.message);
+                    alert("❌ Error: " + result.message);
                 }
             } catch (error) {
-                console.error("Error:", error);
-                alert("❌ સર્વર કનેક્ટ થઈ શક્યું નથી. શું તમારો Node.js પ્રોગ્રામ ચાલુ છે?");
+                console.error("Submission error:", error);
+                alert("❌ Connection to server failed!\n\nTo make this work 24/7 without needing to run 'node server.js' on your laptop, you should deploy this to Vercel or Render. They keep the backend running forever for free!");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = "SUBMIT NOW ➝";
             }
+
         });
     }
 }
 
-// --- ૪. પેજ લોડ થાય ત્યારે બધું સ્ટાર્ટ કરવું ---
+// --- 4. Start everything when page loads ---
 document.addEventListener('DOMContentLoaded', () => {
-    loadProjects();      // ડેટાબેઝમાંથી પ્રોજેક્ટ્સ લાવશે
-    setupContactForm();  // ફોર્મ સબમિટ કરવાનું લોજિક સેટ કરશે
+    loadProjects();      // Fetches projects from database
+    setupContactForm();  // Sets form submission logic
 });
 
 
@@ -446,13 +448,35 @@ certCards.forEach(card => {
 
 
 console.log('🎓 Certification section loaded successfully!');
-// script.js ma aa code add karo
+// Add this code to script.js
 async function getData() {
-  const res = await fetch('/api/hello'); // Vercel automatically 'api/' folder ne endpoint banave che
+  const res = await fetch('/api/hello'); // Vercel automatically makes the 'api/' folder an endpoint
   const data = await res.json();
-  console.log(data.message); // Console ma check karo
+  console.log(data.message); // Check in console
   alert("Backend message: " + data.message);
 }
 
-// Jyare button click thai tyare call karo
-// getData();
+// --- 5. Mobile Menu (Hamburger) ---
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // To change icon (optional: hamburger -> cross)
+        const icon = hamburger.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.replace('fa-bars', 'fa-times');
+        } else {
+            icon.classList.replace('fa-times', 'fa-bars');
+        }
+    });
+
+    // To close menu when a link is clicked
+    document.querySelectorAll('.nav-links li a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            hamburger.querySelector('i').classList.replace('fa-times', 'fa-bars');
+        });
+    });
+}

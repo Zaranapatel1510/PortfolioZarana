@@ -9,7 +9,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://kit.fontawesome.com/cd92b447fa.js" crossorigin="anonymous"></script>
-    <!-- HEAD ma add karo (2.css pachi) -->
+    <!-- Add in HEAD (after 2.css) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -26,7 +26,7 @@
             <div class="logo-area">
                 <img src="logo2.png" alt="logo" class="logo-icon">
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#start">Start</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#creation">Creation</a></li>
@@ -37,6 +37,9 @@
                 <li><a href="#academia">Academia</a></li>
                 <li><a href="#connect" class="btn">Connect</a></li>
             </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
     </header>
 
@@ -62,19 +65,21 @@
             </div>
         </div>
         <div class="social-bar">
-            <a href="https://github.com/Zaranapatel1510" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/zarana-patel-808330346?%20utm_source=share&utm_campaign=share_via&utm_c%20ontent=profile&utm_medium=android_app"
-                target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://twitter.com/yourhandle" target="_blank" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <div class="social-icons-row">
+                <a href="https://github.com/Zaranapatel1510" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/zarana-patel-808330346?%20utm_source=share&utm_campaign=share_via&utm_c%20ontent=profile&utm_medium=android_app"
+                    target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://twitter.com/yourhandle" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
 
             <div class="vertical-line"></div>
 
@@ -133,7 +138,7 @@
 
     </section>
 
-    <section class="projects-portfolio-section" id=creation>
+    <section class="projects-portfolio-section" id="creation">
         <div class="section-header">
             <!-- <span class="badge">Portfolio Highlights</span> -->
             <span class="badge">Featured Projects</span>
@@ -770,7 +775,7 @@
     </footer>
 
     <script src="3.js"></script>
-    <!-- 3.js phela -->
+    <!-- Before 3.js -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();

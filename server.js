@@ -32,12 +32,18 @@ app.get('/', (req, res) => {
 });
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio')
+const uri = process.env.MONGO_URI;
+if (!uri) {
+    console.error('❌ MONGO_URI is missing from .env file. Falling back to localhost.');
+}
+
+mongoose.connect(uri || 'mongodb://127.0.0.1:27017/portfolio')
     .then(() => {
-        console.log('✅ Connected to MongoDB');
-        seedProjects(); // Seed initial data if empty
+        console.log(`✅ Connected to MongoDB: ${uri ? 'Cloud Atlas' : 'Local Compass'}`);
+        seedProjects();
     })
-    .catch((err) => console.error('❌ Could not connect to MongoDB:', err));
+    .catch((err) => console.error('❌ MongoDB Connection Error:', err));
+
 
 // Routes
 app.get('/api/projects', async (req, res) => {
