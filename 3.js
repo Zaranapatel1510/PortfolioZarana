@@ -154,7 +154,7 @@ setInterval(changeInfo, 3000);
 // --- ૨. MongoDB માં પ્રોજેક્ટ્સ લોડ કરવા માટે ---
 async function loadProjects() {
     try {
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch('/api/projects');
         const projects = await response.json();
 
         const projectContainer = document.querySelector('.project-grid-modern');
@@ -206,7 +206,7 @@ function setupContactForm() {
             };
 
             try {
-                const response = await fetch('http://localhost:5000/api/connect', {
+                const response = await fetch('/api/connect', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
