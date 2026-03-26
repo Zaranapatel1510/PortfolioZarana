@@ -1586,7 +1586,9 @@ body {
   margin-top: 10px;
 }
 
-.buttons button {
+.buttons .timeline-link-btn {
+  display: inline-block;
+  text-decoration: none;
   margin: 5px;
   padding: 10px 20px;
   background-color: #1A4D4E;
@@ -1594,6 +1596,14 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.buttons .timeline-link-btn:hover {
+  background-color: #143b3c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .timeline-container {

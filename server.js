@@ -37,12 +37,30 @@ if (!uri) {
     console.error('❌ MONGO_URI is missing from .env file. Falling back to localhost.');
 }
 
-mongoose.connect(uri || 'mongodb://127.0.0.1:27017/portfolio')
+mongoose.connect(uri || 'mongodb://127.0.0.1:27017/portfolio', {
+    serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of default 30s
+})
     .then(() => {
-        console.log(`✅ Connected to MongoDB: ${uri ? 'Cloud Atlas' : 'Local Compass'}`);
+        console.log(`✅ MongoDB Connection Successful: ${uri ? 'Cloud Atlas' : 'Local Compass'}`);
         seedProjects();
     })
-    .catch((err) => console.error('❌ MongoDB Connection Error:', err));
+    .catch((err) => {
+        console.error('❌ MongoDB Connection Error Details:');
+        console.error('Error Name:', err.name);
+        console.error('Error Message:', err.message);
+        if (err.message.includes('IP')) {
+            console.error('💡 TIP: It seems your IP is not whitelisted in MongoDB Atlas.');
+        }
+    });
+
+// Monitor connection events
+mongoose.connection.on('error', err => {
+    console.error('❌ Mongoose event error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+    console.warn('⚠️ Mongoose disconnected');
+});
 
 
 // Routes
@@ -59,6 +77,15 @@ app.post('/api/connect', async (req, res) => {
     try {
         const { name, email, subject, message } = req.body;
         
+        // 0. Check if DB is actually connected
+        if (mongoose.connection.readyState !== 1) {
+            console.error('❌ Database not connected. ReadyState:', mongoose.connection.readyState);
+            return res.status(503).json({ 
+                success: false, 
+                message: 'Database connection is still pending or failed. Please check if your IP is whitelisted in MongoDB Atlas.' 
+            });
+        }
+
         // 1. Save to MongoDB
         const newContact = new Contact({ name, email, subject, message });
         await newContact.save();
@@ -87,6 +114,7 @@ app.post('/api/connect', async (req, res) => {
 
         res.status(201).json({ success: true, message: 'Data saved successfully and notification sent!' });
     } catch (err) {
+        console.error('❌ API Connect Error:', err);
         res.status(500).json({ success: false, message: err.message });
     }
 });
