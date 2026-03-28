@@ -2505,3 +2505,35 @@ iframe {
 
 .toast.success .toast-progress::before { background: #2ecc71; }
 .toast.error .toast-progress::before { background: #e74c3c; }
+
+/* =========================================
+   INTERNSHIP - VIEW CERTIFICATE BUTTON
+   ========================================= */
+.certificate-btn {
+  margin-top: 20px;
+}
+
+.view-certificate {
+  display: inline-block;
+  padding: 10px 22px;
+  background-color: #1A4D4E;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 2px solid #1A4D4E;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.view-certificate:hover {
+  background-color: transparent;
+  color: #1A4D4E !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(26, 77, 78, 0.2);
+}
+
+.view-certificate:active {
+  transform: translateY(-1px);
+}
