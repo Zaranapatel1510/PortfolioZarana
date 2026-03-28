@@ -10,7 +10,7 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Nodemailer Transport Configuration
 const transporter = nodemailer.createTransport({
@@ -172,11 +172,9 @@ async function seedProjects() {
 }
 
 // For local testing
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-        console.log(`🚀 Server is running on http://localhost:${PORT}`);
-    });
-}
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 // For Vercel production
 module.exports = app;
