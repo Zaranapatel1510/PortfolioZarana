@@ -183,6 +183,45 @@ async function loadProjects() {
     }
 }
 
+// --- TOAST NOTIFICATION HELPERS ---
+function createToastContainer() {
+    if (!document.querySelector('.toast-container')) {
+        const container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+}
+
+function showToast(title, message, type = 'success') {
+    createToastContainer();
+    const container = document.querySelector('.toast-container');
+    
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+    
+    toast.innerHTML = `
+        <div class="toast-icon"><i class="fas ${icon}"></i></div>
+        <div class="toast-content">
+            <span class="toast-title">${title}</span>
+            <span class="toast-message">${message}</span>
+        </div>
+        <div class="toast-progress"></div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // Trigger animation
+    setTimeout(() => toast.classList.add('active'), 10);
+    
+    // Auto remove after 5s
+    setTimeout(() => {
+        toast.classList.remove('active');
+        setTimeout(() => toast.remove(), 500);
+    }, 5000);
+}
+
 // --- 3. To submit the contact form ---
 function setupContactForm() {
     const contactForm = document.getElementById('contact-form'); // Ensure HTML has id="contact-form"
@@ -191,7 +230,7 @@ function setupContactForm() {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.getElementById('submit-btn');
-            const successMsg = document.getElementById('success-msg');
+            const userName = document.getElementById('name').value;
 
             // Disable button
             submitBtn.disabled = true;
@@ -199,14 +238,13 @@ function setupContactForm() {
 
             // Collect form data
             const formData = {
-                name: document.getElementById('name').value,
+                name: userName,
                 email: document.getElementById('email').value,
                 subject: document.getElementById('subject').value,
                 message: document.querySelector('textarea').value // For textarea
             };
 
             try {
-                // For 'Always On' functionality, deploy to Vercel/Render.
                 const response = await fetch('/api/connect', { 
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -216,25 +254,23 @@ function setupContactForm() {
                 const result = await response.json();
 
                 if (result.success) {
-                    // Custom success message
-                    successMsg.style.display = 'block';
+                    showToast("Successfully Sent!", `Hi ${userName}, thank you for reaching out!`);
                     contactForm.reset();
-
-                    // Hide message after 5 seconds
-                    setTimeout(() => {
-                        successMsg.style.display = 'none';
-                    }, 5000);
                 } else {
-                    alert("❌ Error: " + result.message);
+                    // Specific message for DB connection issues
+                    if (result.message && result.message.includes('IP')) {
+                        showToast("Connection Error", "MongoDB Atlas issue! Please whitelist your IP address.", "error");
+                    } else {
+                        showToast("Oops!", result.message || "Submission failed", "error");
+                    }
                 }
             } catch (error) {
                 console.error("Submission error:", error);
-                alert("❌ Connection to server failed!\n\nTo make this work 24/7 without needing to run 'node server.js' on your laptop, you should deploy this to Vercel or Render. They keep the backend running forever for free!");
+                showToast("Server Offline", "Make sure your Node server is running!", "error");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = "SUBMIT NOW ➝";
             }
-
         });
     }
 }
