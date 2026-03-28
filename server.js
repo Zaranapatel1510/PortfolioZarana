@@ -33,23 +33,34 @@ app.get('/', (req, res) => {
 
 // MongoDB Connection
 const uri = process.env.MONGO_URI;
+
 if (!uri) {
-    console.error('❌ MONGO_URI is missing from .env file. Falling back to localhost.');
+    console.log('⚠️ MONGO_URI missing, target: local compass');
+} else {
+    // Show partial URI for debug (hide password)
+    const debugUri = uri.replace(/:([^@]+)@/, ":****@");
+    console.log('🔍 MongoDB URI detected:', debugUri);
 }
 
 mongoose.connect(uri || 'mongodb://127.0.0.1:27017/portfolio', {
-    serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of default 30s
+    serverSelectionTimeoutMS: 5000 
 })
     .then(() => {
-        console.log(`✅ MongoDB Connection Successful: ${uri ? 'Cloud Atlas' : 'Local Compass'}`);
+        const dbName = mongoose.connection.name;
+        console.log(`✅ ✅ ✅ MONGO CONNECTED SUCCESS!`);
+        console.log(`📂 Database: ${dbName}`);
+        console.log(`🌐 Host: ${mongoose.connection.host}`);
         seedProjects();
     })
     .catch((err) => {
-        console.error('❌ MongoDB Connection Error Details:');
-        console.error('Error Name:', err.name);
-        console.error('Error Message:', err.message);
-        if (err.message.includes('IP')) {
-            console.error('💡 TIP: It seems your IP is not whitelisted in MongoDB Atlas.');
+        console.error('❌ MONGODB CONNECTION ERROR:');
+        console.error('Type:', err.name);
+        console.error('Message:', err.message);
+        
+        if (err.message.includes('Authentication failed')) {
+            console.log('💡 TIP: WRONG PASSWORD or USERNAME! Check Atlas Database Access.');
+        } else if (err.message.includes('IP')) {
+            console.log('💡 TIP: IP NOT WHITELISTED in Atlas Network Access.');
         }
     });
 
