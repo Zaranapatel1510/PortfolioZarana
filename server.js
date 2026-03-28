@@ -171,6 +171,12 @@ async function seedProjects() {
     }
 }
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
-});
+// For local testing
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    });
+}
+
+// For Vercel production
+module.exports = app;
