@@ -38,6 +38,7 @@ Certifications and achievements (AWS, Simplilearn, hackathon participation)
 Downloadable resume
 Contact form with email notifications via Nodemailer
 MongoDB integration to store contact form submissions
+
 Project Structure
 PortfolioZarana/
 ├── api/              # Backend API routes/logic
@@ -49,22 +50,37 @@ PortfolioZarana/
 ├── package.json       # Project dependencies
 └── ...                # Images, certificates, and resume files
 Getting Started
+
 Prerequisites
+
 Node.js installed on your machine
+
 A MongoDB database (local or Atlas)
+
 Installation
+
 Clone the repository
+
 bash
+
    git clone https://github.com/Zaranapatel1510/PortfolioZarana.git
    cd PortfolioZarana
+
 Install dependencies
+
 bash
+
    npm install
+
 Create a .env file in the root directory and add your environment variables:
+
    MONGO_URI=your_mongodb_connection_string
+   
    EMAIL_USER=your_email
    EMAIL_PASS=your_email_password_or_app_password
+
 Run the server
+
 bash
    npm start
 
